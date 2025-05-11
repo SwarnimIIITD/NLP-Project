@@ -1,35 +1,4 @@
-#### NLP-Project
-#### Preprocessing step -
-#### def preprocess_data(data):
-#### preprocessed_data = []
-#### for item in data:
-#### aspects = []
-#### for aspect in item['aspect_terms']:
-#### aspects.append(aspect['term'])
-#### tokens = word_tokenize(item['sentence'])
-#### length = len(tokens)
-#### labels = ['O'] * length
-#### for aspect in item['aspect_terms']:
-#### start_index = int(aspect['from'])
-#### end_index = int(aspect['to'])
-#### aspect_part = item['sentence'][start_index:end_index+1]
-#### aspect_tokens = word_tokenize(aspect_part)
-#### aspect_length = len(aspect_tokens)
-#### for i in range(length):
-#### if tokens[i] == aspect_tokens[0]:
-#### labels[i] = 'B'
-#### for j in range(aspect_length-1):
-#### labels[i+j+1] = 'I'
-#### break
-#### preprocessed_data.append(
-#### {
-#### 'sentence' : item['sentence'],
-#### 'tokens' : tokens,
-#### 'labels' : labels,
-#### 'aspect_terms' : aspects,
-#### }
-#### )
-#### return preprocessed_data
+## NLP-Project
 #### Have first made a function to do preprocessing. In that function, take all the aspect terms from each data point in the data and take terms from each aspect term. This is appended in a list which contains all aspect terms for a sentence. Similarly, take each data point and extract the start and end index of each aspect term.With help of that, have aspect term part from sentence Tokenize that part of the aspect term from the sentence and try to find there starting within
 #### tokenization of that specific sentence. Wherever there is starting assigned B of BIO indexing and I till length of aspect term extracted (O is assigned to all remaining part in begging itself).
 #### Finally, append this new labels list of tokenize sentences (each word label), aspect term list for the specific sentence, tokenize sentence and sentence itself is saved in dictionary form to the final list to have all data points of this format/structure.
